@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv2s7fr8fk7je"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ekrvx"]
+size = Vector2(10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o60qu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byc2v"]
+radius = 0.33
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_20541"]
+radius = 0.33
+
+[node name="Main" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ekrvx")
+
+[node name="ComparisonCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_o60qu")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.86714)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_byc2v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_20541")
