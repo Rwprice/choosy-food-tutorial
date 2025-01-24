@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv2s7fr8fk7je"]
+[gd_scene load_steps=6 format=3 uid="uid://bv2s7fr8fk7je"]
+
+[ext_resource type="Script" path="res://player.cs" id="1_pq7fc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ekrvx"]
 size = Vector2(10, 10)
@@ -21,10 +23,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_o60qu")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.86714)
+transform = Transform3D(0.568533, 0, 0.82266, 0, 1, 0, -0.82266, 0, 0.568533, 1.4381, 1, 2.43263)
+script = ExtResource("1_pq7fc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_byc2v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_20541")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612627, -0.014365)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.62542, 0.780289, 0, -0.780289, 0.62542, 0, 10.8661, 9.88463)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Crosshair" type="ColorRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
