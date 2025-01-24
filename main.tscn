@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_o60qu")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.568533, 0, 0.82266, 0, 1, 0, -0.82266, 0, 0.568533, 1.4381, 1, 2.43263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4381, 1, 2.43263)
 script = ExtResource("1_7siu8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
