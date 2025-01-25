@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://gs30jo2i71qw"]
+
+[ext_resource type="PackedScene" uid="uid://clsymdy4qxmxl" path="res://Fantasy Town/stallRed.glb" id="1_bp864"]
+[ext_resource type="Script" path="res://Scripts/Resource Scripts/FoodQuiz.cs" id="1_jgbbt"]
+[ext_resource type="PackedScene" uid="uid://22gjqxfrrr5m" path="res://Blocky Characters/Models/Non-rigged/glTF/advancedCharacter.gltf" id="2_lhrg5"]
+[ext_resource type="Texture2D" uid="uid://cvrbgoshebfhp" path="res://Blocky Characters/Skins/Advanced/skin_adventurer.png" id="3_qyabr"]
+[ext_resource type="PackedScene" uid="uid://b7iq6ctm48lc6" path="res://Food Kit/apple.glb" id="4_v1ykx"]
+[ext_resource type="PackedScene" uid="uid://has45ga81yvl" path="res://Food Kit/bread.glb" id="6_aui74"]
+[ext_resource type="PackedScene" uid="uid://djd4x6rcww73p" path="res://Food Kit/burger-cheese-double.glb" id="7_spck4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ci6d4"]
+albedo_texture = ExtResource("3_qyabr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmrci"]
+
+[node name="FoodQuiz" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+script = ExtResource("1_jgbbt")
+
+[node name="Stall" parent="." instance=ExtResource("1_bp864")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="FemaleNPC" parent="." instance=ExtResource("2_lhrg5")]
+transform = Transform3D(0.0825518, 0, 0.0564376, 0, 0.1, 0, -0.0564376, 0, 0.0825518, -1.89906, 0, 0.95208)
+
+[node name="Body1" parent="FemaleNPC" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ci6d4")
+
+[node name="Head1" parent="FemaleNPC" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ci6d4")
+
+[node name="ArmLeft1" parent="FemaleNPC" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ci6d4")
+
+[node name="ArmRight1" parent="FemaleNPC" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ci6d4")
+
+[node name="LegLeft1" parent="FemaleNPC" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ci6d4")
+
+[node name="LegRight1" parent="FemaleNPC" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ci6d4")
+
+[node name="apple2" parent="." instance=ExtResource("4_v1ykx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73866, 0.834456, 0.45781)
+
+[node name="bread2" parent="." instance=ExtResource("6_aui74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67692, 0.834456, 0.52149)
+
+[node name="burger-cheese-double2" parent="." instance=ExtResource("7_spck4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267117, 0.834456, 0.23942)
+
+[node name="DialogueTrigger" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogueTrigger"]
+transform = Transform3D(2.23405, 0, 0, 0, 1, 0, 0, 0, 2.84752, -0.0457487, 0.533051, 2.29583)
+shape = SubResource("BoxShape3D_qmrci")
+
+[connection signal="body_entered" from="DialogueTrigger" to="." method="OnDialogueTriggerBodyEntered"]
+
+[editable path="FemaleNPC"]

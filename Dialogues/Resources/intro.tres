@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_hpl1i")
 AvatarTexture = ExtResource("1_nlvj0")
-DialogueSlides = ["Welcome to the stall.", "There is lots of free food.", "Just make sure you choose correctly...", "Ha ha ha ha."]
+DialogueSlides = ["Welcome to the market.", "There is lots of free food.", "Just make sure you choose correctly...", "Ha ha ha ha."]

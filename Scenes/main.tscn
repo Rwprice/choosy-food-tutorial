@@ -1,17 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv2s7fr8fk7je"]
+[gd_scene load_steps=11 format=3 uid="uid://bv2s7fr8fk7je"]
 
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Player.cs" id="1_lknyp"]
 [ext_resource type="Texture2D" uid="uid://ginpvr7yfloc" path="res://Blocky Characters/Faces/face_womanAlternative.png" id="2_2jryt"]
 [ext_resource type="Script" path="res://Scenes/DialogueManager.cs" id="2_ubu55"]
 [ext_resource type="Resource" uid="uid://b4pssc81jlbgo" path="res://Dialogues/Resources/intro.tres" id="3_uhb7l"]
 [ext_resource type="FontFile" uid="uid://0gytmkfxu3vd" path="res://Fonts/PoetsenOne-Regular.ttf" id="3_xwegg"]
-[ext_resource type="PackedScene" uid="uid://clsymdy4qxmxl" path="res://Fantasy Town/stallRed.glb" id="4_nnguj"]
-[ext_resource type="PackedScene" uid="uid://b7iq6ctm48lc6" path="res://Food Kit/apple.glb" id="5_0n7lq"]
-[ext_resource type="PackedScene" uid="uid://qnc7c7t1vslg" path="res://Food Kit/banana.glb" id="6_alun5"]
-[ext_resource type="PackedScene" uid="uid://has45ga81yvl" path="res://Food Kit/bread.glb" id="7_22484"]
-[ext_resource type="PackedScene" uid="uid://djd4x6rcww73p" path="res://Food Kit/burger-cheese-double.glb" id="8_w1k7s"]
-[ext_resource type="PackedScene" uid="uid://22gjqxfrrr5m" path="res://Blocky Characters/Models/Non-rigged/glTF/advancedCharacter.gltf" id="9_gau8e"]
-[ext_resource type="Texture2D" uid="uid://clypkmxktlbst" path="res://Blocky Characters/Skins/Advanced/skin_woman.png" id="10_xk6o6"]
+[ext_resource type="PackedScene" uid="uid://gs30jo2i71qw" path="res://Scenes/food_quiz.tscn" id="6_ejfis"]
+[ext_resource type="Resource" uid="uid://dhejirp17ppmb" path="res://Dialogues/Resources/adventurer_stall.tres" id="7_kxgxk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ekrvx"]
 size = Vector2(10, 10)
@@ -21,9 +16,6 @@ radius = 0.33
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_20541"]
 radius = 0.33
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18fpt"]
-albedo_texture = ExtResource("10_xk6o6")
 
 [node name="Main" type="Node3D"]
 
@@ -115,40 +107,8 @@ theme_override_font_sizes/font_size = 32
 text = "Sample dialogue text"
 vertical_alignment = 1
 
-[node name="Stall" parent="." instance=ExtResource("4_nnguj")]
-transform = Transform3D(-4.38674e-08, 0, 1.00357, 0, 1.00357, 0, -1.00357, 0, -4.38674e-08, -0.0805058, 0.00912094, -2.51217)
+[node name="FoodQuiz" parent="." instance=ExtResource("6_ejfis")]
+StallDialogue = ExtResource("7_kxgxk")
 
-[node name="apple2" parent="." instance=ExtResource("5_0n7lq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73866, 0.834456, -2.04219)
-
-[node name="banana2" parent="." instance=ExtResource("6_alun5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.984334, 0.834456, -2.08591)
-
-[node name="bread2" parent="." instance=ExtResource("7_22484")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67692, 0.834456, -1.97851)
-
-[node name="burger-cheese-double2" parent="." instance=ExtResource("8_w1k7s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267117, 0.834456, -2.26058)
-
-[node name="FemaleNPC" parent="." instance=ExtResource("9_gau8e")]
-transform = Transform3D(0.0825518, 0, 0.0564376, 0, 0.1, 0, -0.0564376, 0, 0.0825518, -1.89906, 0, -1.54792)
-
-[node name="Body1" parent="FemaleNPC" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
-
-[node name="Head1" parent="FemaleNPC" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
-
-[node name="ArmLeft1" parent="FemaleNPC" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
-
-[node name="ArmRight1" parent="FemaleNPC" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
-
-[node name="LegLeft1" parent="FemaleNPC" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
-
-[node name="LegRight1" parent="FemaleNPC" index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
-
-[editable path="FemaleNPC"]
+[editable path="FoodQuiz"]
+[editable path="FoodQuiz/FemaleNPC"]
