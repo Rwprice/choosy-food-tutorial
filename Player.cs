@@ -6,7 +6,9 @@ namespace ChoosyFoodTutorial;
 public partial class Player : CharacterBody3D
 {
     [Export] private float _mouseSensitivity = 0.1f;
-    [Export] private float _playerSpeed = 5.0f;
+    
+    [Export] private float _playerSpeed = 3.5f;
+    [Export] private float _groundFriction = 0.9f;
     
     private Camera3D _camera;
 
@@ -35,11 +37,15 @@ public partial class Player : CharacterBody3D
 
     private void Move(double delta)
     {
-        Console.WriteLine(Transform.Basis.Z);
-        
         Vector3 velocity = Velocity;
-        float direction = Input.GetAxis("Move_Forward", "Move_Backward");
-        velocity.X = direction * _playerSpeed;
+
+        var movementVec2 = Input.GetVector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward");
+        var movement = Transform.Basis * new Vector3(movementVec2.X, 0, movementVec2.Y);
+        movement *= _playerSpeed;
+        velocity = new Vector3(movement.X, 0, movement.Z);
+        velocity.X *= _groundFriction;
+        velocity.Z *= _groundFriction;
+        
 
         Velocity = velocity;
         MoveAndSlide();

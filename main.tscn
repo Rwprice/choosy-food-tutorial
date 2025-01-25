@@ -1,11 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv2s7fr8fk7je"]
+[gd_scene load_steps=15 format=3 uid="uid://bv2s7fr8fk7je"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_7siu8"]
+[ext_resource type="PackedScene" uid="uid://clsymdy4qxmxl" path="res://Fantasy Town/stallRed.glb" id="2_8cvo4"]
+[ext_resource type="Texture2D" uid="uid://ginpvr7yfloc" path="res://Blocky Characters/Faces/face_womanAlternative.png" id="2_gorda"]
+[ext_resource type="FontFile" uid="uid://0gytmkfxu3vd" path="res://Fonts/PoetsenOne-Regular.ttf" id="3_bdbjq"]
+[ext_resource type="PackedScene" uid="uid://b7iq6ctm48lc6" path="res://Food Kit/apple.glb" id="3_n3vtv"]
+[ext_resource type="PackedScene" uid="uid://qnc7c7t1vslg" path="res://Food Kit/banana.glb" id="4_mk8l5"]
+[ext_resource type="PackedScene" uid="uid://has45ga81yvl" path="res://Food Kit/bread.glb" id="5_7eeeq"]
+[ext_resource type="PackedScene" uid="uid://djd4x6rcww73p" path="res://Food Kit/burger-cheese-double.glb" id="6_0yv05"]
+[ext_resource type="PackedScene" uid="uid://22gjqxfrrr5m" path="res://Blocky Characters/Models/Non-rigged/glTF/advancedCharacter.gltf" id="7_m7b2b"]
+[ext_resource type="Texture2D" uid="uid://clypkmxktlbst" path="res://Blocky Characters/Skins/Advanced/skin_woman.png" id="8_vlmth"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ekrvx"]
 size = Vector2(10, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o60qu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byc2v"]
 radius = 0.33
@@ -13,17 +20,21 @@ radius = 0.33
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_20541"]
 radius = 0.33
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18fpt"]
+albedo_texture = ExtResource("8_vlmth")
+
 [node name="Main" type="Node3D"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.875802, 0.482671, 0, -0.482671, 0.875802, 0, 11.1811, 14.894)
+shadow_enabled = true
+
 [node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.15176, 0, 0, 0, 0.984924, 0, 0, 0, 3.15176, 0, 0, 0)
 mesh = SubResource("PlaneMesh_ekrvx")
 
-[node name="ComparisonCube" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("BoxMesh_o60qu")
-
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4381, 1, 2.43263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0496309, 1, 4.97295)
 script = ExtResource("1_7siu8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -35,9 +46,6 @@ mesh = SubResource("CapsuleMesh_20541")
 [node name="PlayerCamera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612627, -0.014365)
 current = true
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.62542, 0.780289, 0, -0.780289, 0.62542, 0, 10.8661, 9.88463)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -53,3 +61,88 @@ offset_right = 4.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="DialogueUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Portrait" type="TextureRect" parent="CanvasLayer/DialogueUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 128.0
+grow_vertical = 0
+texture = ExtResource("2_gorda")
+expand_mode = 1
+
+[node name="TextBox" type="ColorRect" parent="CanvasLayer/DialogueUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -99.0
+offset_right = 1137.0
+grow_vertical = 0
+color = Color(0.74978, 0.74978, 0.74978, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DialogueUI/TextBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/DialogueUI/TextBox/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bdbjq")
+theme_override_font_sizes/font_size = 32
+text = "Sample dialogue text"
+vertical_alignment = 1
+
+[node name="Stall" parent="." instance=ExtResource("2_8cvo4")]
+transform = Transform3D(-4.38674e-08, 0, 1.00357, 0, 1.00357, 0, -1.00357, 0, -4.38674e-08, -0.0805058, 0.00912094, -2.51217)
+
+[node name="apple2" parent="." instance=ExtResource("3_n3vtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73866, 0.834456, -2.04219)
+
+[node name="banana2" parent="." instance=ExtResource("4_mk8l5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.984334, 0.834456, -2.08591)
+
+[node name="bread2" parent="." instance=ExtResource("5_7eeeq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67692, 0.834456, -1.97851)
+
+[node name="burger-cheese-double2" parent="." instance=ExtResource("6_0yv05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267117, 0.834456, -2.26058)
+
+[node name="FemaleNPC" parent="." instance=ExtResource("7_m7b2b")]
+transform = Transform3D(0.0825518, 0, 0.0564376, 0, 0.1, 0, -0.0564376, 0, 0.0825518, -1.89906, 0, -1.54792)
+
+[node name="Body1" parent="FemaleNPC" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
+
+[node name="Head1" parent="FemaleNPC" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
+
+[node name="ArmLeft1" parent="FemaleNPC" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
+
+[node name="ArmRight1" parent="FemaleNPC" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
+
+[node name="LegLeft1" parent="FemaleNPC" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
+
+[node name="LegRight1" parent="FemaleNPC" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_18fpt")
+
+[editable path="FemaleNPC"]
