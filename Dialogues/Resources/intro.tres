@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://b4pssc81jlbgo"]
+
+[ext_resource type="Script" path="res://Dialogues/Scripts/Dialogue.cs" id="1_hpl1i"]
+[ext_resource type="Texture2D" uid="uid://4d6wycif1qmc" path="res://Blocky Characters/Faces/face_robot.png" id="1_nlvj0"]
+
+[resource]
+script = ExtResource("1_hpl1i")
+AvatarTexture = ExtResource("1_nlvj0")
+DialogueSlides = ["Welcome to the stall.", "There is lots of free food.", "Just make sure you choose correctly...", "Ha ha ha ha."]

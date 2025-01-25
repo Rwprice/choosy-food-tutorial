@@ -1,14 +1,18 @@
-using System;
 using Godot;
 
-namespace ChoosyFoodTutorial;
+namespace ChoosyFoodTutorial.Scripts.Resource_Scripts;
 
 public partial class Player : CharacterBody3D
 {
-    [Export] private float _mouseSensitivity = 0.1f;
+    // Mouse Variables
+    [Export] 
+    private float _mouseSensitivity = 0.1f;
     
-    [Export] private float _playerSpeed = 3.5f;
-    [Export] private float _groundFriction = 0.9f;
+    // Movement Variables
+    [Export] 
+    private float _playerSpeed = 3.5f;
+    [Export] 
+    private float _groundFriction = 0.9f;
     
     private Camera3D _camera;
 
