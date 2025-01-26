@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://b0lkwengicg5s"]
+
+[ext_resource type="Texture2D" uid="uid://bx35s3r45sa53" path="res://Blocky Characters/Faces/face_woman.png" id="1_548ue"]
+[ext_resource type="Script" path="res://Dialogues/Scripts/Dialogue.cs" id="2_jyuvh"]
+
+[resource]
+script = ExtResource("2_jyuvh")
+AvatarTexture = ExtResource("1_548ue")
+DialogueSlides = Array[String](["Brilliant!"])

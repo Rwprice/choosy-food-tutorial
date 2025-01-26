@@ -12,7 +12,7 @@ public partial class DialogueManager : Control
 	
 	private Label _dialogueText;
 	private TextureRect _avatarTextureRect;
-	private GameEvents _gameEvents;
+	private Scripts.Resource_Scripts.GameEvents _gameEvents;
 
 	private int _currentSlideIndex;
 	
@@ -31,9 +31,11 @@ public partial class DialogueManager : Control
 
 	private void Initialize()
 	{
-		_gameEvents = GetNode<GameEvents>("/root/GameEvents");
-		_gameEvents.Connect(nameof(GameEvents.SignalName.DialogueInitiated), 
+		_gameEvents = GetNode<Scripts.Resource_Scripts.GameEvents>("/root/GameEvents");
+		_gameEvents.Connect(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.DialogueInitiated), 
 			Callable.From((Dialogue dialogue) => OnDialogueInitiated(dialogue)));
+		_gameEvents.Connect(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.DialogueEnded), 
+			Callable.From(OnDialogueEnded));
 		
 		_dialogueText = GetNode<Label>(DialogueTextPath);
 		_avatarTextureRect = GetNode<TextureRect>(AvatarPath);
@@ -65,13 +67,13 @@ public partial class DialogueManager : Control
 		}
 		else if (GlobalState.CurrentGameplayState == GameplayState.IN_DIALOGUE)
 		{
-			OnDialogueEnded();
+			_gameEvents.DelayDialogueEnded();
 		}
 	}
 
 	private void OnDialogueEnded()
 	{
-		GlobalState.CurrentGameplayState = GameplayState.OUT_OF_DIALOGUE;
 		Visible = false;
+		GlobalState.CurrentGameplayState = GameplayState.OUT_OF_DIALOGUE;
 	}
 }

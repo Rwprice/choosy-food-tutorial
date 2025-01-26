@@ -1,3 +1,4 @@
+using ChoosyFoodTutorial.Scripts.Resource_Scripts;
 using Godot;
 
 namespace ChoosyFoodTutorial.Scenes;
@@ -10,7 +11,7 @@ public partial class Food : Node3D
 	[Export] 
 	public float SpinSpeed = 4.0f;
 	
-	private GameEvents _gameEvents;
+	private Scripts.Resource_Scripts.GameEvents _gameEvents;
 	private SpotLight3D _spotlight;
 	private Node3D _foodMesh;
 
@@ -18,11 +19,13 @@ public partial class Food : Node3D
 
 	public override void _Ready()
 	{
-		_gameEvents = GetNode<GameEvents>("/root/GameEvents");
-		_gameEvents.Connect(nameof(GameEvents.SignalName.FoodHovered), 
+		_gameEvents = GetNode<Scripts.Resource_Scripts.GameEvents>("/root/GameEvents");
+		_gameEvents.Connect(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodHovered), 
 			Callable.From((Food food) => OnFoodHovered(food)));
-		_gameEvents.Connect(nameof(GameEvents.SignalName.FoodUnhovered), 
+		_gameEvents.Connect(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodUnhovered), 
 			Callable.From(OnFoodUnhovered));
+		_gameEvents.Connect(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodSelected), 
+			Callable.From((Food food) => OnFoodSelected(food)));
 		
 		_spotlight = GetNode<SpotLight3D>("Spotlight");
 		_spotlight.Visible = false;
@@ -51,6 +54,13 @@ public partial class Food : Node3D
 		if (this != food) return;
 		_spotlight.Visible = true;
 		_isFocused = true;
+	}
+
+	private void OnFoodSelected(Food food)
+	{
+		if (this != food) return;
+		QueueFree();
+		GetParent<FoodQuiz>().OnFoodChosen(food);
 	}
 
 	private void OnFoodUnhovered()

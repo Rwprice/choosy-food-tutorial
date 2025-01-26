@@ -4,12 +4,14 @@ namespace ChoosyFoodTutorial.Scenes;
 
 public partial class FoodChooserRay : RayCast3D
 {
-    private GameEvents _gameEvents;
+    [Export] private GlobalState GlobalState { get; set; }
+    
+    private Scripts.Resource_Scripts.GameEvents _gameEvents;
     private bool _isMouseOver;
 
     public override void _Ready()
     {
-        _gameEvents = GetNode<GameEvents>("/root/GameEvents");
+        _gameEvents = GetNode<Scripts.Resource_Scripts.GameEvents>("/root/GameEvents");
         _isMouseOver = false;
     }
 
@@ -23,19 +25,19 @@ public partial class FoodChooserRay : RayCast3D
             {
                 if (!_isMouseOver)
                 {
-                    _gameEvents.EmitSignal(nameof(GameEvents.SignalName.FoodHovered), food);
+                    _gameEvents.EmitSignal(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodHovered), food);
                     _isMouseOver = true;
                 }
                 
-                if (Input.IsActionJustPressed("Select_Food"))
+                if (Input.IsActionJustPressed("Select_Food") && GlobalState.CurrentGameplayState == GameplayState.OUT_OF_DIALOGUE)
                 {
-                    _gameEvents.EmitSignal(nameof(GameEvents.SignalName.FoodSelected), food);
+                    _gameEvents.EmitSignal(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodSelected), food);
                 }
             }
         }
         else if (_isMouseOver)
         {
-            _gameEvents.EmitSignal(nameof(GameEvents.SignalName.FoodUnhovered));
+            _gameEvents.EmitSignal(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodUnhovered));
             _isMouseOver = false;
         }
     }

@@ -5,14 +5,14 @@ namespace ChoosyFoodTutorial.Scenes;
 public partial class FoodUi : Control
 {
 	private Label _foodLabel;
-	private GameEvents _gameEvents;
+	private Scripts.Resource_Scripts.GameEvents _gameEvents;
 	
 	public override void _Ready()
 	{
-		_gameEvents = GetNode<GameEvents>("/root/GameEvents");
-		_gameEvents.Connect(nameof(GameEvents.SignalName.FoodHovered),
+		_gameEvents = GetNode<Scripts.Resource_Scripts.GameEvents>("/root/GameEvents");
+		_gameEvents.Connect(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodHovered),
 			Callable.From((Food food) => OnFoodHovered(food)));
-		_gameEvents.Connect(nameof(GameEvents.SignalName.FoodUnhovered),
+		_gameEvents.Connect(nameof(Scripts.Resource_Scripts.GameEvents.SignalName.FoodUnhovered),
 			Callable.From(OnFoodUnhovered));
 		
 		foreach (var child in GetChildren())

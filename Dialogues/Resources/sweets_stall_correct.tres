@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://cbtewgtalpy11"]
+
+[ext_resource type="Texture2D" uid="uid://etabuye7l5j7" path="res://Blocky Characters/Faces/face_adventurer.png" id="1_biknr"]
+[ext_resource type="Script" path="res://Dialogues/Scripts/Dialogue.cs" id="2_0dfty"]
+
+[resource]
+script = ExtResource("2_0dfty")
+AvatarTexture = ExtResource("1_biknr")
+DialogueSlides = Array[String](["Nice! Healthy choices are the best!"])

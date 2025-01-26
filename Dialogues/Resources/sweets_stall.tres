@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://dhejirp17ppmb"]
+
+[ext_resource type="Texture2D" uid="uid://etabuye7l5j7" path="res://Blocky Characters/Faces/face_adventurer.png" id="1_jogur"]
+[ext_resource type="Script" path="res://Dialogues/Scripts/Dialogue.cs" id="2_k35ie"]
+
+[resource]
+script = ExtResource("2_k35ie")
+AvatarTexture = ExtResource("1_jogur")
+DialogueSlides = Array[String](["Welcome to my stall!", "Choose the healthiest option!", "(Use your mouse to click on the food)"])

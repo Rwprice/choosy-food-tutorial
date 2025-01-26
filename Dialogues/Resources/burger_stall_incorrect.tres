@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://c3pdgqmemmht2"]
+
+[ext_resource type="Texture2D" uid="uid://bx35s3r45sa53" path="res://Blocky Characters/Faces/face_woman.png" id="1_ndw0l"]
+[ext_resource type="Script" path="res://Dialogues/Scripts/Dialogue.cs" id="2_bbd4b"]
+
+[resource]
+script = ExtResource("2_bbd4b")
+AvatarTexture = ExtResource("1_ndw0l")
+DialogueSlides = Array[String](["Oh... You're a fucking idiot..."])

@@ -2,7 +2,7 @@ using ChoosyFoodTutorial.Dialogues.Scripts;
 using ChoosyFoodTutorial.Scenes;
 using Godot;
 
-namespace ChoosyFoodTutorial;
+namespace ChoosyFoodTutorial.Scripts.Resource_Scripts;
 
 public partial class GameEvents : Node
 {
@@ -20,4 +20,24 @@ public partial class GameEvents : Node
     
     [Signal]
     public delegate void FoodSelectedEventHandler(Food food);
+
+    public void DelayDialogueInitiated(Dialogue dialogue)
+    {
+        CallDeferred(nameof(EmitDialogueInitiated), dialogue);
+    }
+
+    public void DelayDialogueEnded()
+    {
+        CallDeferred(nameof(EmitDialogueEnded));
+    }
+
+    private void EmitDialogueInitiated(Dialogue dialogue)
+    {
+        EmitSignal(nameof(DialogueInitiated), dialogue);
+    }
+
+    private void EmitDialogueEnded()
+    {
+        EmitSignal(nameof(DialogueEnded));
+    }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bv2s7fr8fk7je"]
+[gd_scene load_steps=37 format=3 uid="uid://bv2s7fr8fk7je"]
 
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Player.cs" id="1_lknyp"]
 [ext_resource type="Texture2D" uid="uid://ginpvr7yfloc" path="res://Blocky Characters/Faces/face_womanAlternative.png" id="2_2jryt"]
@@ -9,21 +9,27 @@
 [ext_resource type="FontFile" uid="uid://0gytmkfxu3vd" path="res://Fonts/PoetsenOne-Regular.ttf" id="3_xwegg"]
 [ext_resource type="PackedScene" uid="uid://gs30jo2i71qw" path="res://Scenes/food_quiz.tscn" id="6_ejfis"]
 [ext_resource type="Script" path="res://Scenes/FoodUi.cs" id="7_jp6tn"]
-[ext_resource type="Resource" uid="uid://dhejirp17ppmb" path="res://Dialogues/Resources/adventurer_stall.tres" id="7_kxgxk"]
+[ext_resource type="Resource" uid="uid://dhejirp17ppmb" path="res://Dialogues/Resources/sweets_stall.tres" id="7_kxgxk"]
 [ext_resource type="PackedScene" uid="uid://b7iq6ctm48lc6" path="res://Food Kit/apple.glb" id="8_h3i0a"]
 [ext_resource type="PackedScene" uid="uid://sroafw4ajvrn" path="res://Food Kit/cupcake.glb" id="9_f4oti"]
 [ext_resource type="Texture2D" uid="uid://cvrbgoshebfhp" path="res://Blocky Characters/Skins/Advanced/skin_adventurer.png" id="10_m1km1"]
 [ext_resource type="PackedScene" uid="uid://m8gdmwyguxe8" path="res://Food Kit/chocolate.glb" id="10_opfgr"]
+[ext_resource type="Resource" uid="uid://cbtewgtalpy11" path="res://Dialogues/Resources/sweets_stall_correct.tres" id="10_vdo5y"]
+[ext_resource type="Resource" uid="uid://fauy0ln4ktxh" path="res://Dialogues/Resources/sweets_stall_incorrect.tres" id="11_hhjln"]
 [ext_resource type="Texture2D" uid="uid://clypkmxktlbst" path="res://Blocky Characters/Skins/Advanced/skin_woman.png" id="14_n0jbc"]
 [ext_resource type="Resource" uid="uid://daxtoxexkp7qb" path="res://Dialogues/Resources/burger_stall.tres" id="14_xnyph"]
 [ext_resource type="PackedScene" uid="uid://cdx2bpk72jqis" path="res://Food Kit/burger-cheese.glb" id="15_027pl"]
 [ext_resource type="PackedScene" uid="uid://7xlyl5gk3mv6" path="res://Food Kit/burger-double.glb" id="16_lqww2"]
 [ext_resource type="PackedScene" uid="uid://rxiv4v6js3fb" path="res://Food Kit/burger.glb" id="17_5sgwu"]
+[ext_resource type="Resource" uid="uid://b0lkwengicg5s" path="res://Dialogues/Resources/burger_stall_correct.tres" id="17_kyv64"]
 [ext_resource type="Texture2D" uid="uid://b8v7gteqp4tbq" path="res://Blocky Characters/Skins/Advanced/skin_womanAlternative.png" id="18_fsqlq"]
+[ext_resource type="Resource" uid="uid://c3pdgqmemmht2" path="res://Dialogues/Resources/burger_stall_incorrect.tres" id="18_xrqbs"]
 [ext_resource type="Resource" uid="uid://djei55ioh8iyr" path="res://Dialogues/Resources/bottle_stall.tres" id="19_i48gs"]
 [ext_resource type="PackedScene" uid="uid://chsfslk7lq7sp" path="res://Food Kit/bottle-ketchup.glb" id="20_xxs36"]
 [ext_resource type="PackedScene" uid="uid://cqrdqkbo51l0u" path="res://Food Kit/bottle-musterd.glb" id="21_jvona"]
 [ext_resource type="PackedScene" uid="uid://cvdn7rxw4bnju" path="res://Food Kit/bottle-oil.glb" id="22_ada2i"]
+[ext_resource type="Resource" uid="uid://7clxjk3sverj" path="res://Dialogues/Resources/bottle_stall_correct.tres" id="24_3xir0"]
+[ext_resource type="Resource" uid="uid://cnubwp3nscnqa" path="res://Dialogues/Resources/bottle_stall_incorrect.tres" id="25_77eqt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ekrvx"]
 size = Vector2(10, 10)
@@ -74,6 +80,7 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("2_qhfy2")
+GlobalState = ExtResource("2_awkrb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -182,6 +189,9 @@ vertical_alignment = 1
 
 [node name="FoodQuiz" parent="." instance=ExtResource("6_ejfis")]
 StallDialogue = ExtResource("7_kxgxk")
+CorrectDialogue = ExtResource("10_vdo5y")
+IncorrectDialogue = ExtResource("11_hhjln")
+CorrectFoodPath = NodePath("Food1")
 
 [node name="Body1" parent="FoodQuiz/NPC" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_tkqgi")
@@ -219,6 +229,9 @@ FoodName = "Chocolate Bar"
 [node name="FoodQuiz2" parent="." instance=ExtResource("6_ejfis")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 3)
 StallDialogue = ExtResource("14_xnyph")
+CorrectDialogue = ExtResource("17_kyv64")
+IncorrectDialogue = ExtResource("18_xrqbs")
+CorrectFoodPath = NodePath("Food2")
 
 [node name="Body1" parent="FoodQuiz2/NPC" index="0"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.075325, 0, -0.117279)
@@ -262,6 +275,9 @@ FoodName = "Double"
 [node name="FoodQuiz3" parent="." instance=ExtResource("6_ejfis")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, 3)
 StallDialogue = ExtResource("19_i48gs")
+CorrectDialogue = ExtResource("24_3xir0")
+IncorrectDialogue = ExtResource("25_77eqt")
+CorrectFoodPath = NodePath("Food3")
 
 [node name="Body1" parent="FoodQuiz3/NPC" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_iws6t")
