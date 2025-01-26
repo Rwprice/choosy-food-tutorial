@@ -14,6 +14,10 @@ public partial class Player : CharacterBody3D
     [Export] 
     private float _groundFriction = 0.9f;
     
+    // Game State
+    [Export] 
+    private GlobalState _globalState;
+    
     private Camera3D _camera;
 
     public override void _Ready()
@@ -31,7 +35,10 @@ public partial class Player : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        Move(delta);
+        if (_globalState.CurrentGameplayState == GameplayState.OUT_OF_DIALOGUE)
+        {
+            Move(delta);
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -41,12 +48,10 @@ public partial class Player : CharacterBody3D
 
     private void Move(double delta)
     {
-        Vector3 velocity = Velocity;
-
         var movementVec2 = Input.GetVector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward");
         var movement = Transform.Basis * new Vector3(movementVec2.X, 0, movementVec2.Y);
         movement *= _playerSpeed;
-        velocity = new Vector3(movement.X, 0, movement.Z);
+        var velocity = new Vector3(movement.X, 0, movement.Z);
         velocity.X *= _groundFriction;
         velocity.Z *= _groundFriction;
         

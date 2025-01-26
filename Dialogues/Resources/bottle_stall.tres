@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://djei55ioh8iyr"]
+
+[ext_resource type="Texture2D" uid="uid://ginpvr7yfloc" path="res://Blocky Characters/Faces/face_womanAlternative.png" id="1_qm8x2"]
+[ext_resource type="Script" path="res://Dialogues/Scripts/Dialogue.cs" id="1_ri1il"]
+
+[resource]
+script = ExtResource("1_ri1il")
+AvatarTexture = ExtResource("1_qm8x2")
+DialogueSlides = Array[String](["Well, hey there stanger!", "Can you help me out?", "Which of these doesn't go on a hot dog?"])

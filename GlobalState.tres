@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GlobalState" load_steps=2 format=3 uid="uid://bwl3qda6gberj"]
+
+[ext_resource type="Script" path="res://GlobalState.cs" id="1_2rvj7"]
+
+[resource]
+script = ExtResource("1_2rvj7")
+CurrentGameplayState = 0

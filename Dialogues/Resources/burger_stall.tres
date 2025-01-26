@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://daxtoxexkp7qb"]
+
+[ext_resource type="Texture2D" uid="uid://bx35s3r45sa53" path="res://Blocky Characters/Faces/face_woman.png" id="1_ays12"]
+[ext_resource type="Script" path="res://Dialogues/Scripts/Dialogue.cs" id="1_yorjn"]
+
+[resource]
+script = ExtResource("1_yorjn")
+AvatarTexture = ExtResource("1_ays12")
+DialogueSlides = Array[String](["Hello there!", "Which burger is the tallest?"])

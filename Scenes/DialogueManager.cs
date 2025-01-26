@@ -1,4 +1,3 @@
-using System;
 using ChoosyFoodTutorial.Dialogues.Scripts;
 using Godot;
 
@@ -6,12 +5,10 @@ namespace ChoosyFoodTutorial.Scenes;
 
 public partial class DialogueManager : Control
 {
-	[Export] 
-	private NodePath DialogueTextPath { get; set; }
-	[Export] 
-	private NodePath AvatarPath { get; set; }
-	[Export] 
-	private Dialogue CurrentDialogue { get; set; }
+	[Export] private NodePath DialogueTextPath { get; set; }
+	[Export] private NodePath AvatarPath { get; set; }
+	[Export] private Dialogue CurrentDialogue { get; set; }
+	[Export] private GlobalState GlobalState { get; set; }
 	
 	private Label _dialogueText;
 	private TextureRect _avatarTextureRect;
@@ -43,10 +40,19 @@ public partial class DialogueManager : Control
 		InitializeDialogue();
 	}
 
+	private void OnDialogueInitiated(Dialogue newDialogue)
+	{
+		CurrentDialogue = newDialogue;
+		_currentSlideIndex = 0;
+		InitializeDialogue();
+	}
+
 	private void InitializeDialogue()
 	{
 		_avatarTextureRect.Texture = CurrentDialogue.AvatarTexture;
 		_dialogueText.Text = CurrentDialogue.DialogueSlides[_currentSlideIndex];
+		
+		GlobalState.CurrentGameplayState = GameplayState.IN_DIALOGUE;
 		Visible = true;
 	}
 
@@ -57,16 +63,15 @@ public partial class DialogueManager : Control
 			_currentSlideIndex++;
 			_dialogueText.Text = CurrentDialogue.DialogueSlides[_currentSlideIndex];
 		}
-		else
+		else if (GlobalState.CurrentGameplayState == GameplayState.IN_DIALOGUE)
 		{
-			Visible = false;
+			OnDialogueEnded();
 		}
 	}
 
-	private void OnDialogueInitiated(Dialogue newDialogue)
+	private void OnDialogueEnded()
 	{
-		CurrentDialogue = newDialogue;
-		_currentSlideIndex = 0;
-		InitializeDialogue();
+		GlobalState.CurrentGameplayState = GameplayState.OUT_OF_DIALOGUE;
+		Visible = false;
 	}
 }
