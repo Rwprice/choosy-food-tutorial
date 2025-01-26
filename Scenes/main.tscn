@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv2s7fr8fk7je"]
+[gd_scene load_steps=15 format=3 uid="uid://bv2s7fr8fk7je"]
 
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Player.cs" id="1_lknyp"]
 [ext_resource type="Texture2D" uid="uid://ginpvr7yfloc" path="res://Blocky Characters/Faces/face_womanAlternative.png" id="2_2jryt"]
+[ext_resource type="Script" path="res://Scenes/FoodChooserRay.cs" id="2_qhfy2"]
 [ext_resource type="Script" path="res://Scenes/DialogueManager.cs" id="2_ubu55"]
 [ext_resource type="Resource" uid="uid://b4pssc81jlbgo" path="res://Dialogues/Resources/intro.tres" id="3_uhb7l"]
 [ext_resource type="FontFile" uid="uid://0gytmkfxu3vd" path="res://Fonts/PoetsenOne-Regular.ttf" id="3_xwegg"]
 [ext_resource type="PackedScene" uid="uid://gs30jo2i71qw" path="res://Scenes/food_quiz.tscn" id="6_ejfis"]
 [ext_resource type="Resource" uid="uid://dhejirp17ppmb" path="res://Dialogues/Resources/adventurer_stall.tres" id="7_kxgxk"]
+[ext_resource type="PackedScene" uid="uid://b7iq6ctm48lc6" path="res://Food Kit/apple.glb" id="8_h3i0a"]
+[ext_resource type="PackedScene" uid="uid://sroafw4ajvrn" path="res://Food Kit/cupcake.glb" id="9_f4oti"]
+[ext_resource type="PackedScene" uid="uid://m8gdmwyguxe8" path="res://Food Kit/chocolate.glb" id="10_opfgr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ekrvx"]
 size = Vector2(10, 10)
@@ -20,7 +24,7 @@ radius = 0.33
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.875802, 0.482671, 0, -0.482671, 0.875802, 0, 11.1811, 14.894)
+transform = Transform3D(0.99306, 0.117612, 0.00010952, -0.0438294, 0.36921, 0.928312, 0.10914, -0.921874, 0.371802, 0, 7.2621, 3.59794)
 shadow_enabled = true
 
 [node name="Ground" type="MeshInstance3D" parent="."]
@@ -40,6 +44,13 @@ mesh = SubResource("CapsuleMesh_20541")
 [node name="PlayerCamera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612627, -0.014365)
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/PlayerCamera"]
+target_position = Vector3(0, 0, -2.5)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("2_qhfy2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -110,5 +121,11 @@ vertical_alignment = 1
 [node name="FoodQuiz" parent="." instance=ExtResource("6_ejfis")]
 StallDialogue = ExtResource("7_kxgxk")
 
+[node name="apple2" parent="FoodQuiz/Food1" index="2" instance=ExtResource("8_h3i0a")]
+
+[node name="cupcake2" parent="FoodQuiz/Food2" index="2" instance=ExtResource("9_f4oti")]
+
+[node name="chocolate2" parent="FoodQuiz/Food3" index="2" instance=ExtResource("10_opfgr")]
+
 [editable path="FoodQuiz"]
-[editable path="FoodQuiz/FemaleNPC"]
+[editable path="FoodQuiz/NPC"]

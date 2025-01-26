@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5wrsvylsjo7o"]
+
+[ext_resource type="Script" path="res://Scenes/Food.cs" id="1_pwgj4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ectgy"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_pwgj4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.253167, 0.967423, 0, -0.967423, 0.253167, 0, 0.870723, 0.13265)
+light_energy = 3.227
+spot_range = 1.123
+spot_attenuation = 2.32
+spot_angle = 17.31
+spot_angle_attenuation = 0.435275
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.294996, 0, 0, 0, 0.301613, 0, 0, 0, 0.313931, 0, 0.0918543, -0.0590239)
+shape = SubResource("SphereShape3D_ectgy")
